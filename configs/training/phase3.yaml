@@ -1,0 +1,24 @@
+# Phase 3: Memory-Aware Fine-Tuning (>1500 iterations)
+training:
+  phase: 3
+  max_iterations: 1500
+  batch_size: 16
+
+optimizer:
+  type: muon
+  base_lr: 0.0001
+  freeze_style_params: true
+  
+pruning:
+  strategy: full_sparsity
+  final_keep_rate: 0.4
+  mask_update_interval: 100
+  
+quantization:
+  prepare: true
+  attention_precision: bf16
+  residual_precision: int8
+
+memory:
+  pool_prealloc: 7GB
+  fragmentation_threshold: 0.05

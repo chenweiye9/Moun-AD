@@ -1,0 +1,28 @@
+# Phase 1: Global Style Alignment (0-500 iterations)
+training:
+  phase: 1
+  max_iterations: 500
+  batch_size: 32
+  
+optimizer:
+  type: muon
+  base_lr: 0.001
+  orthogonal_updates: true
+  gradient_projection: newton_schulz
+  
+loss:
+  style_weight: 0.8
+  content_weight: 0.2
+  distill:
+    kl_divergence: true
+    layers: [6, 12, 18]
+
+pruning:
+  strategy: dynamic
+  initial_keep_rate: 0.95
+  final_keep_rate: 0.7
+  entropy_threshold: 0.65
+  
+regularization:
+  weight_decay: 0.01
+  gradient_clip: 1.0

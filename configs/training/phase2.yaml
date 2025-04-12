@@ -1,0 +1,27 @@
+# Phase 2: Local Detail Refinement (500-1500 iterations)
+training:
+  phase: 2
+  max_iterations: 1000  # 500-1500
+  batch_size: 32
+
+optimizer:
+  type: muon
+  base_lr: 0.0005
+  adaptive_balance: true
+  
+loss:
+  dynamic_weighting: 
+    enabled: true
+    fid_window: 5
+    ssim_target: 0.85
+  
+pruning:
+  strategy: adaptive
+  min_keep_rate: 0.6
+  entropy_threshold: 0.7
+  gradient_sensitivity: 0.03
+
+attention:
+  head_selection:
+    active_heads: [8, 16]
+    entropy_based: true

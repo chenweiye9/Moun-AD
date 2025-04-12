@@ -1,0 +1,25 @@
+hardware:
+  platform: jetson_agx_orin
+  cuda_arch: sm_87
+  memory_limit: 7GB
+  
+inference:
+  precision: mixed
+  latency_target: 10s
+  fps_target: 24
+  
+optimizations:
+  kernel_fusion: true
+  memory_pools:
+    - type: pinned
+      size: 2GB
+    - type: device
+      size: 4GB
+      
+power:
+  tdp: 25W
+  thermal_throttling: 65C
+  
+dla_config:
+  offload_layers: [conv2d, res_block]
+  precision: int8

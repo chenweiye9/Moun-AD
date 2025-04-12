@@ -1,0 +1,30 @@
+quantization:
+  scheme: hybrid
+  policy:
+    attention:
+      dtype: bf16
+      min_range: -1.5
+      max_range: 2.0
+    residual:
+      dtype: int8
+      symmetric: true
+      granularity: channel_wise
+
+calibration:
+  dataset: imagenet_texture
+  num_samples: 512
+  method: percentile_99.99
+  
+memory:
+  sparse_storage:
+    format: csr
+    density_threshold: 0.4
+  allocation:
+    strategy: best_fit
+    alignment: 128bit
+    
+deployment:
+  tensorrt:
+    precision: FP16+INT8
+    optimization_level: 3
+    timeout: 300s

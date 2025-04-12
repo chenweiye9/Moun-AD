@@ -1,0 +1,39 @@
+model:
+  name: "MuonAD-UNet"
+  encoder:
+    base_channels: 64
+    prune_rate: 0.4
+    keep_layers: [6, 12, 18]
+    
+  attention:
+    dynamic_pruning:
+      enabled: true
+      entropy_threshold: 0.7
+      min_keep_rate: 0.4
+
+  quantization:
+    attention_layers: "bfloat16"
+    residual_layers: "int8"
+
+  training:
+    curriculum_schedule:
+      - phase: 1
+        iterations: 500
+        lambda_style: 0.8
+      - phase: 2
+        iterations: 1500
+        adaptive_balance: true
+      - phase: 3
+        iterations: 1000
+        freeze_style: true
+
+pruning:
+  dynamic_mask:
+    enabled: true
+    entropy_threshold: 0.7  
+    min_keep_rate: 0.4      
+    warmup_iters: 500        
+    
+  gradient_sensitivity:
+    decay_factor: 0.03      
+    score_window: 100       

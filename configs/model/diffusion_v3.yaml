@@ -1,0 +1,23 @@
+# Based on SDv3
+inherits: base.yaml
+
+diffusion:
+  model_type: "sd_v3"
+  text_encoder: "CLIP-ViT-L/14"
+  token_dim: 768
+  cross_attention_dim: 2048
+  attention_head_dim: 64
+  
+  scheduler:
+    name: "DDIM"
+    num_train_timesteps: 1000
+    beta_start: 0.00085
+    beta_end: 0.012
+
+  vae:
+    embed_dim: 4
+    scaling_factor: 0.18215
+
+training:
+  mixed_precision: "bf16"
+  gradient_checkpointing: true
