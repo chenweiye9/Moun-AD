@@ -3,4 +3,4 @@ Muon-Accelerated Attention Distillation for Real-Time Edge Synthesis via Optimiz
 
 The current code is a demo version, a completed version is now being updating along with the dataset. We will release these as soon as the work is completed.
 
-This work is submitted to *IEEE ACCESS* (under review).  
+This work is submitted to *IEEE TRANSCATIONS ON KNOWLEDGE AND DATA ENGINEERING* (under review).  
